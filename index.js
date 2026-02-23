@@ -21,7 +21,11 @@ app.get("/webhook", (req, res) => {
 });
 
 // Recibir mensajes
-app.post("/webhook", async (req, res) => {
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log("Servidor activo en puerto " + PORT);
+});
   const message = req.body.entry?.[0]?.changes?.[0]?.value?.messages?.[0];
 
   if (message) {
